@@ -1,0 +1,25 @@
+/* Header.css */
+
+.header {
+    background-color: #4CAF50;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 20px 0;
+
+    font-family: 'Arial', sans-serif;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2rem;
+    letter-spacing: 1px;
+
+}

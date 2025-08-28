@@ -1,0 +1,17 @@
+.home {
+    background-color: #bbe6e4;
+
+    width: 500px;
+    padding: 30px 20px;
+   
+    margin: 100px auto;
+    
+    text-align: center;
+    
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    border-radius: 10px;
+    
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+}
