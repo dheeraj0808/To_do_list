@@ -1,17 +1,14 @@
 .home {
     background-color: #F6E9FD;
-
-    width: 500px;
+    width: 600px;
+    min-height: 300px;
     padding: 30px 20px;
-
     margin: 100px auto;
-
     text-align: center;
-
     font-size: 16px;
     font-family: Arial, sans-serif;
+    border: 1px solid black;
     border-radius: 10px;
-
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
 }

@@ -2,33 +2,36 @@ import React, { useState } from 'react'
 import '../assets/style/Home.css'
 
 const Home = () => {
-  const [task, setTask] = useState("")     // input box ke liye state
-  const [tasks, setTasks] = useState([])   // list of tasks
+  const [currentTask, setCurrentTask] = useState("")   // Input box ke liye state
+  const [tasks, setTasks] = useState([])              // to do list ko list me show karne ke liye
 
-  // Add button function
+  // Add button function ke liye
   const addTask = () => {
-    if (task.trim() !== "") {
-      setTasks([...tasks, task])
-      setTask("")
+    if (currentTask.trim() !== "") {
+      setTasks([...tasks, currentTask])
+      setCurrentTask("")
     }
   }
-  const deleteTask = (index) => {
-    const newTasks = tasks.filter((_, i) => i !== index)
-    setTasks(newTasks)
+
+  // Delete task function ke liye
+  const deleteTask = (taskIndex) => {
+    const updatedTasks = tasks.filter((_, index) => index !== taskIndex)
+    setTasks(updatedTasks)
   }
+
   return (
     <div className="home">
+      <p>TO DO LIST</p>
       <div>
         <input
           className="inputtext"
           type="text"
-          value={task}
-          onChange={(e) => {
-            // Yeh line value ko log karegi
-            setTask(e.target.value);
-            console.log(e.target.value);
+          value={currentTask}
+          onChange={(event) => {
+            setCurrentTask(event.target.value)
+            console.log(event.target.value) // Input box me jo type kar rahe ho wo console me dikhega
           }}
-          placeholder="Enter To do task.."
+          placeholder="Enter To Do Task..."
         />
         <button
           className="addButton"
@@ -39,21 +42,17 @@ const Home = () => {
         </button>
       </div>
 
-
       <ul>
-
-        {tasks.map((t, i) => (
-          <li
-
-            key={i}>
+        {tasks.map((taskName, index) => (
+          <li key={index}>
             <input type="checkbox" />
-            <span className="task">{t}</span>
-
-            <button onClick={() => deleteTask(i)}>Delete</button>
+            <span className="task">{taskName}</span>
+            <button onClick={() => deleteTask(index)}>Delete</button>
           </li>
         ))}
       </ul>
     </div>
   )
 }
+
 export default Home
