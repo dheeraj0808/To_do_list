@@ -1,56 +1,68 @@
 import React, { useState } from 'react'
 import '../assets/style/Home.css'
 
-const Home = () => {
-  const [currentTask, setCurrentTask] = useState("")   // Input box ke liye state
-  const [tasks, setTasks] = useState([])              // to do list ko list me show karne ke liye
+function Home() {
+  const [tasks, setTasks] = useState([]);
+  const [newTask, setNewTask] = useState("");
 
-  // Add button function ke liye
-  const addTask = () => {
-    if (currentTask.trim() !== "") {
-      setTasks([...tasks, currentTask])
-      setCurrentTask("")
+  function handleInputChange(event) {
+    setNewTask(event.target.value);
+  }
+
+  function addTask() {
+    if (newTask.trim() !== "") {
+      setTasks(t => [...t, newTask]);
+      setNewTask(""); // reset input
     }
   }
 
-  // Delete task function ke liye
-  const deleteTask = (taskIndex) => {
-    const updatedTasks = tasks.filter((_, index) => index !== taskIndex)
-    setTasks(updatedTasks)
+  function deleteTask(index) {
+    const updatedTasks = tasks.filter((_, i) => i !== index);
+    setTasks(updatedTasks);
+  }
+
+  function moveTaskUp(index) {
+    if (index > 0) {
+      const updatedTasks = [...tasks];
+      [updatedTasks[index], updatedTasks[index - 1]] =
+        [updatedTasks[index - 1], updatedTasks[index]];
+      setTasks(updatedTasks);
+    }
+  }
+
+  function moveTaskDown(index) {
+    if (index < tasks.length - 1) {
+      const updatedTasks = [...tasks];
+      [updatedTasks[index], updatedTasks[index + 1]] =
+        [updatedTasks[index + 1], updatedTasks[index]];
+      setTasks(updatedTasks);
+    }
   }
 
   return (
-    <div className="home">
+    <div className='home'>
       <p>TO DO LIST</p>
       <div>
-        <input
-          className="inputtext"
+        <input className='inputText'
           type="text"
-          value={currentTask}
-          onChange={(event) => {
-            setCurrentTask(event.target.value)
-            console.log(event.target.value) // Input box me jo type kar rahe ho wo console me dikhega
-          }}
-          placeholder="Enter To Do Task..."
-        />
-        <button
-          className="addButton"
-          type="button"
-          onClick={addTask}
-        >
-          Add
+          placeholder="Enter a task...."
+          value={newTask}
+          onChange={handleInputChange} />
+        <button className='addButton' onClick={addTask}>
+          Add Task
         </button>
       </div>
-
-      <ul>
-        {tasks.map((taskName, index) => (
+      <ol>
+        {tasks.map((task, index) =>
           <li key={index}>
             <input type="checkbox" />
-            <span className="task">{taskName}</span>
-            <button onClick={() => deleteTask(index)}>Delete</button>
+            <span className="text">{task}</span>
+            <button className="deleteTask" onClick={() => deleteTask(index)}>Delete</button>
+            <button className="moveButton" onClick={() => moveTaskUp(index)}>↑</button>
+            <button className="moveButton" onClick={() => moveTaskDown(index)}>↓</button>
           </li>
-        ))}
-      </ul>
+        )}
+      </ol>
     </div>
   )
 }

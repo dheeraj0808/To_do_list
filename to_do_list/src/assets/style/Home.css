@@ -14,16 +14,21 @@
 }
 
 .addButton {
-    width: 100px;
-    background-color: rgb(166, 166, 223);
-    padding: 10px 30px;
+    width: 150px;
+    background-color: rgb(2, 47, 2);
+    padding: 10px;
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 500;
     border-radius: 12px;
+    color: white;
 
 }
 
-.inputtext {
+.addButton:hover {
+    background-color: rgb(19, 83, 19);
+}
+
+.inputText {
     text-align: center;
     border-radius: 10px;
     width: 200px;
@@ -34,7 +39,57 @@
     margin-right: 25px;
 }
 
-input:checked+.task {
+input:checked+.text {
     text-decoration: line-through;
     color: gray;
+}
+
+.deleteTask {
+    font-size: 1.5rem;
+    padding: 5px;
+    background-color: rgb(203, 79, 79);
+    color: white;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.deleteTask:hover {
+    background-color: rgb(112, 18, 18);
+}
+
+.moveButton {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 5px 10px;
+    background-color: rgb(56, 98, 203);
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.moveButton:hover {
+    background-color: rgb(5, 28, 83);
+}
+
+li {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 15px;
+    background-color: #ebe4ef;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.text {
+    flex: 1;
+}
+
+.deleteTask,
+.moveButton {
+    margin-left: 10px;
 }
